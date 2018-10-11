@@ -1,0 +1,10 @@
+2018-09-29: Broad steps:
+A. Physical Assembly
+  1. Research soldering wire onto prototype board
+  2. Clip existing test plug from LED strip
+  3. Attach ribbon to RP GPIO header
+  4. Solder wire from LED strip onto prototype board, per:
+    - https://learn.adafruit.com/digital-led-strip/wiring, and
+    - https://github.com/longjos/RPi-LPD8806
+  5. Test
+  Wait, maybe no soldering, breadboard instead!?
