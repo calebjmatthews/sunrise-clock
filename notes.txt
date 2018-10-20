@@ -1,4 +1,4 @@
-2018-09-29: Broad steps:
+2018-09-29 Broad steps:
 A. Physical Assembly
   1. Research soldering wire onto prototype board
   2. Clip existing test plug from LED strip
@@ -8,3 +8,18 @@ A. Physical Assembly
     - https://github.com/longjos/RPi-LPD8806
   5. Test
   Wait, maybe no soldering, breadboard instead!?
+
+2018-10-11 Broad steps:
+A. Physical Assembly
+  1. Clip existing test plug from LED strip
+  2. Attach ribbon to RP GPIO header
+  3. Use breadboard to route LED strip into prototype board, per:
+  - https://github.com/longjos/RPi-LPD8806
+  4. Test
+  5. If non-functional, remove test wires from LED strip and solder new wires
+
+B. Software
+  1.
+
+Requirements:
+  1.
