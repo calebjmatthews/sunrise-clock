@@ -1,4 +1,10 @@
+#!/usr/bin/python
+
+from bootstrap import *
 from flask import Flask
+
+print('led:')
+print(led)
 
 app = Flask(__name__)
 
