@@ -1,4 +1,5 @@
 #!/usr/bin/python
+sys.path.append('/RPi-LPD8806')
 
 from bootstrap import *
 from flask import Flask
