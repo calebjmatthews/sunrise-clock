@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import sys
 sys.path.append('/RPi-LPD8806')
 
 from bootstrap import *
