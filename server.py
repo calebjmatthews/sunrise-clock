@@ -22,14 +22,17 @@ server = Flask(__name__)
 
 @server.route('/')
 def index():
-    timeStr = anAlarm.readAlarmFromFile()
-    return render_template('index.html', alarmtime=timeStr)
+    results = anAlarm.readAlarmFromFile()
+    anAlarm.setAlarmData(results[0], results[1])
+    return render_template('index.html', alarmtime=anAlarm.timeStr,
+        alarmDelta=anAlarm.alarmDelta, sunriseDuration=results[1])
 
 @server.route('/alarmset', methods=['POST'])
 def alarmset():
     timeStr = request.form['alarmtime']
-    anAlarm.writeAlarmToFile(timeStr)
-    anAlarm.setAlarmDatetime(timeStr)
+    sunriseDuration = request.form['sunriseDuration']
+    anAlarm.writeAlarmToFile(timeStr, sunriseDuration)
+    anAlarm.setAlarmData(timeStr, sunriseDuration)
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
