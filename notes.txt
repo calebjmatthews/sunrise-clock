@@ -41,3 +41,8 @@ Timing logic:
 3. If so, calculate diff between this datetime and the current datetime
 4. If not, calculate diff between the datetime tomorrow and the current datetime
 5. Set a sleep() timer to expire at the end of this diff
+
+LED logic:
+- Array of 10 different rgb values, beginning at #000, ending at a yellowish #fff
+- Each led has a different randomized endpoint, +/- X% difference between it and min/max
+- Change leds ten times per second (sleep(.1)), calculate floor() of time difference between time elapsed since last rgb value and total time/10
