@@ -17,9 +17,27 @@ A. Physical Assembly
   - https://github.com/longjos/RPi-LPD8806
   4. Test
   5. If non-functional, remove test wires from LED strip and solder new wires
+  6. Test direct wire connections with jumper wires and test wires from LED
+  strip
+  7. Solder jumper wires together with LED strip wires
+  8. Wrap LED strip into housing
 
 B. Software
-  1.
+  1. Flask server
+  2. LED drivers
+  3. Read alarm time if existing
+  4. Set alarm time and save in txt file
+  5. Calculate second diff between current time and alarm time
+  6. Set deferred task until seconds elapse
+  7. Array of rgb values
+  8. Move between rgb values (with some randomness between LEDs)
+  9. Move with a configurable delay between timesteps
+  10.Auto shutdown after a minute of full light
+  11.Shutdown command route on flask server
 
-Requirements:
-  1.
+Timing logic:
+1. Pull or set hour for alarm
+2. Check if hour is in the future for the current day
+3. If so, calculate diff between this datetime and the current datetime
+4. If not, calculate diff between the datetime tomorrow and the current datetime
+5. Set a sleep() timer to expire at the end of this diff
