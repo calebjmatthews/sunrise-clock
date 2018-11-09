@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import math
 import sys
 sys.path.append('./RPi-LPD8806')
 sys.path.append('./dawn')
@@ -24,13 +25,14 @@ server = Flask(__name__)
 def index():
     results = anAlarm.readAlarmFromFile()
     anAlarm.setAlarmData(results[0], results[1])
+    displayDuration = math.floor(results[1] / 60)
     return render_template('index.html', alarmtime=anAlarm.timeStr,
-        alarmDelta=anAlarm.alarmDelta, sunriseDuration=results[1])
+        alarmDelta=anAlarm.alarmDelta, sunriseDuration=displayDuration)
 
 @server.route('/alarmset', methods=['POST'])
 def alarmset():
     timeStr = request.form['alarmtime']
-    sunriseDuration = request.form['sunriseDuration']
+    sunriseDuration = math.floor(int(request.form['sunriseDuration']) * 60)
     anAlarm.writeAlarmToFile(timeStr, sunriseDuration)
     anAlarm.setAlarmData(timeStr, sunriseDuration)
     return redirect(url_for('index'))

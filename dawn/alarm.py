@@ -1,13 +1,15 @@
 from datetime import datetime, timedelta
 import time
 import math
+from sunrise import Sunrise
 
 class Alarm:
     def __init__(self):
         self.timeStr = '06:00'
         self.alarmDatetime = datetime.now()
         self.alarmDelta = ''
-        self.sunriseDuration = 10
+        self.sunriseDuration = (10 * 60000)
+        self.sunRising = False
         try:
             results = self.readAlarmFromFile()
             timeStr = results[0]
@@ -71,9 +73,13 @@ class Alarm:
         return (alarmDatetime, deltaString)
 
     def checkAlarmSleeper(self):
-        nowDatetime = datetime.now()
-        if (nowDatetime > self.alarmDatetime):
-            self.callAlarm()
+        if not (self.sunRising):
+            nowDatetime = datetime.now()
+            if (nowDatetime > self.alarmDatetime):
+                self.callAlarm()
+
 
     def callAlarm(self):
-        print('ALARM ALARM ALARM')
+        aSunrise = Sunrise(self.sunriseDuration)
+        aSunrise.start()
+        aSunrise.end()
