@@ -8,6 +8,7 @@ sys.path.append('./dawn')
 from flask import Flask, render_template, request, redirect, url_for
 from alarm import Alarm
 anAlarm = Alarm()
+from sunrise import Sunrise
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -36,6 +37,20 @@ def alarmset():
     anAlarm.writeAlarmToFile(timeStr, sunriseDuration)
     anAlarm.setAlarmData(timeStr, sunriseDuration)
     return redirect(url_for('index'))
+
+@server.route('/alarmtest', methods=['POST'])
+def alarmtest():
+    aSunrise = Sunrise(20)
+    aSunrise.test()
+    return 'Finished test'
+
+@server.route('/shutdown', methods=['POST'])
+def shutdownServer():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+    return 'Server shutting down...'
 
 if __name__ == '__main__':
     server.run()

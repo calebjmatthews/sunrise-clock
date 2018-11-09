@@ -80,6 +80,8 @@ class Alarm:
 
 
     def callAlarm(self):
+        self.sunRising = True
         aSunrise = Sunrise(self.sunriseDuration)
         aSunrise.start()
         aSunrise.end()
+        self.sunRising = False

@@ -24,6 +24,11 @@ class Sunrise:
         print('self.sunriseDuration')
         print(self.sunriseDuration)
 
+    def test(self):
+        self.start()
+        time.sleep(2)
+        self.end()
+
     def start(self):
         # led = LEDStrip(LED_COUNT)
         for colorIndex in range(len(TARGET_COLORS)-1):
@@ -35,7 +40,7 @@ class Sunrise:
         # led = LEDStrip(LED_COUNT)
         for colorIndex in reversed(range(1, len(TARGET_COLORS))):
             self.transitionBetweenColors(TARGET_COLORS[colorIndex],
-                TARGET_COLORS[colorIndex+1], 0.1)
+                TARGET_COLORS[colorIndex-1], 0.1)
         led.all_off()
 
     def transitionBetweenColors(self, color1, color2, duration):
