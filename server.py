@@ -4,7 +4,7 @@ import sys
 sys.path.append('./RPi-LPD8806')
 sys.path.append('./dawn')
 
-# from bootstrap import *
+from bootstrap import *
 from flask import Flask, render_template, request, redirect, url_for
 from alarm import Alarm
 anAlarm = Alarm()
@@ -18,7 +18,7 @@ scheduler.add_job(func=anAlarm.checkAlarmSleeper, trigger="interval",
 scheduler.start()
 atexit.register(lambda: scheduler.shutdown())
 
-# led.all_off()
+led.all_off()
 
 server = Flask(__name__)
 
@@ -53,7 +53,7 @@ def shutdownServer():
     return 'Server shutting down...'
 
 if __name__ == '__main__':
-    server.run()
-    # server.run(host='0.0.0.0', port='8090')
+    # server.run()
+    server.run(host='0.0.0.0', port='8090')
 
     url_for('static', filename='style.css')

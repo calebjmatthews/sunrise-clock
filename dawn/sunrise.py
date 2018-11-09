@@ -1,5 +1,6 @@
 import time
 import math
+from bootstrap import *
 
 TARGET_COLORS = [
     [0,0,0],
@@ -30,14 +31,14 @@ class Sunrise:
         self.end()
 
     def start(self):
-        # led = LEDStrip(LED_COUNT)
+        led = LEDStrip(LED_COUNT)
         for colorIndex in range(len(TARGET_COLORS)-1):
             self.transitionBetweenColors(TARGET_COLORS[colorIndex],
                 TARGET_COLORS[colorIndex+1],
                 self.sunriseDuration/len(TARGET_COLORS))
 
     def end(self):
-        # led = LEDStrip(LED_COUNT)
+        led = LEDStrip(LED_COUNT)
         for colorIndex in reversed(range(1, len(TARGET_COLORS))):
             self.transitionBetweenColors(TARGET_COLORS[colorIndex],
                 TARGET_COLORS[colorIndex-1], 0.1)
@@ -55,10 +56,10 @@ class Sunrise:
             self.timeElapsed += tickLength
             progress = ticksPassed / ticksTotal
             colorSet = self.genColorSet(color1, color2, progress)
-            # led.fillRGB(colorSet[0], colorSet[1], colorSet[2])
-            # led.update()
-            print('colorSet')
-            print(colorSet)
+            led.fillRGB(colorSet[0], colorSet[1], colorSet[2])
+            led.update()
+            # print('colorSet')
+            # print(colorSet)
             time.sleep(tickLength)
 
     def genColorSet(self, color1, color2, progress):
