@@ -1,2 +1,4 @@
 /RPi-LPD8806
 /py-spidev
+/build
+/flask
