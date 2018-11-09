@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+  <title>DAWN</title>
+  <link rel="stylesheet" href="./static/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</head>
+<body>
+  <h2>D.A.W.N.</h2>
+  <h6>(Digitally Amplified Waking Nexus, of course)</h6>
+    <div class="wrapper">
+      {% if alarmtime %}
+      <div class="container">
+        <p>The alarm is set for:</p>
+        <h1>{{ alarmtime }}</h1>
+        <p>And will sound in:</p>
+        <h4>{{ alarmDelta }}</h4>
+      </div>
+      <form class="container" action="/alarmset" method="POST">
+        <p>Change alarm time:</p>
+        <input name="alarmtime" type="time" value="{{ alarmtime }}" required>
+        <p>Change sunrise duration (min):</p>
+        <input name="sunriseDuration" type="number"
+        value="{{ sunriseDuration }}" required>
+        <button type="submit">Update</button>
+      </form>
+      {% else %}
+      <form class="container" action="/alarmset" method="POST">
+        <p>There is no alarm currently set. Set one now:</p>
+        <input name="alarmtime" type="time" value="{{ alarmtime }}" required>
+        <p>Set sunrise duration (min):</p>
+        <input name="sunriseDuration" type="number"
+        value="{{ sunriseDuration }}" required>
+        <button type="submit">Set</button>
+      </form>
+      {% endif %}
+    </div>
+</body>
+</html>
