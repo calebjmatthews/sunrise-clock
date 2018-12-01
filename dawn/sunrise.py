@@ -62,7 +62,6 @@ class Sunrise:
         for tickIndex in range(ticksTotal):
             ticksPassed += 1
             self.timeElapsed += tickLength
-            speedMult = self.speedMults[ledIndex]
             progress = ticksPassed / ticksTotal
             for ledIndex in range(LED_COUNT):
                 self.applyColorToOneLed(color1, color2, progress, ledIndex)
