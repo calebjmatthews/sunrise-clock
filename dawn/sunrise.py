@@ -58,8 +58,8 @@ class Sunrise:
             colorSet = self.genColorSet(color1, color2, progress)
             led.fillRGB(colorSet[0], colorSet[1], colorSet[2])
             led.update()
-            # print('colorSet')
-            # print(colorSet)
+            print('colorSet')
+            print(colorSet)
             time.sleep(tickLength)
 
     def genColorSet(self, color1, color2, progress):
