@@ -41,20 +41,18 @@ class Sunrise:
     def start(self):
         led = LEDStrip(LED_COUNT)
         for colorIndex in range(len(TARGET_COLORS)-1):
-            for ledIndex in range(LED_COUNT):
-                self.transitionBetweenColors(TARGET_COLORS[colorIndex],
-                    TARGET_COLORS[colorIndex+1],
-                    self.sunriseDuration/len(TARGET_COLORS), ledIndex)
+            self.transitionBetweenColors(TARGET_COLORS[colorIndex],
+                TARGET_COLORS[colorIndex+1],
+                self.sunriseDuration/len(TARGET_COLORS))
 
     def end(self):
         led = LEDStrip(LED_COUNT)
         for colorIndex in reversed(range(1, len(TARGET_COLORS))):
-            for ledIndex in range(LED_COUNT):
-                self.transitionBetweenColors(TARGET_COLORS[colorIndex],
-                    TARGET_COLORS[colorIndex-1], 0.1, ledIndex)
+            self.transitionBetweenColors(TARGET_COLORS[colorIndex],
+                TARGET_COLORS[colorIndex-1], 0.1)
         led.all_off()
 
-    def transitionBetweenColors(self, color1, color2, duration, ledIndex):
+    def transitionBetweenColors(self, color1, color2, duration):
         ticksPassed = 0
         tickLength = MIN_TICK_LENGTH
         ticksTotal = math.floor(duration / MIN_TICK_LENGTH)
@@ -65,13 +63,16 @@ class Sunrise:
             ticksPassed += 1
             self.timeElapsed += tickLength
             speedMult = self.speedMults[ledIndex]
-            progress = ticksPassed / (ticksTotal * speedMult)
-            colorSet = self.genColorSet(color1, color2, progress)
-            led.setRGB(ledIndex, colorSet[0], colorSet[1], colorSet[2])
+            progress = ticksPassed / ticksTotal
+            for ledIndex in range(LED_COUNT):
+                self.applyColorToOneLed(color1, color2, progress, ledIndex)
             led.update()
-            print('colorSet')
-            print(colorSet)
             time.sleep(tickLength)
+
+    def applyColorToOneLed(self, color1, color2, progress, ledIndex):
+        appliedProgress = progress * this.speedMults[ledIndex]
+        colorSet = self.genColorSet(color1, color2, progress)
+        led.setRGB(ledIndex, colorSet[0], colorSet[1], colorSet[2])
 
     def genColorSet(self, color1, color2, progress):
         colorSet = []
