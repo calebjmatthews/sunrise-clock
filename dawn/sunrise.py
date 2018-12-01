@@ -69,7 +69,7 @@ class Sunrise:
             time.sleep(tickLength)
 
     def applyColorToOneLed(self, color1, color2, progress, ledIndex):
-        appliedProgress = progress * this.speedMults[ledIndex]
+        appliedProgress = progress * self.speedMults[ledIndex]
         colorSet = self.genColorSet(color1, color2, progress)
         led.setRGB(ledIndex, colorSet[0], colorSet[1], colorSet[2])
 
