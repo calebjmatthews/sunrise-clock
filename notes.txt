@@ -49,3 +49,4 @@ LED logic:
 and min/max
 - Change leds ten times per second (sleep(.1)), calculate floor() of time
 difference between time elapsed since last rgb value and total time/10
+- Array of 32 tick length multipliers randomly set from 0.75 to 1
