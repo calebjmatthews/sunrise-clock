@@ -31,6 +31,7 @@ class Sunrise:
         speedMults = []
         for index in range(LED_COUNT):
             speedMults.append(random.uniform(0.75, 1.0))
+        return speedMults
 
     def test(self):
         self.start()
