@@ -30,7 +30,7 @@ class Sunrise:
     def genSpeedMults(self):
         speedMults = []
         for index in range(LED_COUNT):
-            speedMults.append(random.uniform(0.75, 1.0))
+            speedMults.append(random.uniform(0.25, 1.0))
         return speedMults
 
     def test(self):
@@ -70,7 +70,7 @@ class Sunrise:
 
     def applyColorToOneLed(self, color1, color2, progress, ledIndex):
         appliedProgress = progress * self.speedMults[ledIndex]
-        colorSet = self.genColorSet(color1, color2, progress)
+        colorSet = self.genColorSet(color1, color2, appliedProgress)
         led.setRGB(ledIndex, colorSet[0], colorSet[1], colorSet[2])
 
     def genColorSet(self, color1, color2, progress):
